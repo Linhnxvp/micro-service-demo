@@ -1,6 +1,7 @@
 package com.microservice.orderservice.controller;
 
 import com.microservice.orderservice.entity.Order;
+import com.microservice.orderservice.model.OrderResponse;
 import com.microservice.orderservice.model.OrderRequest;
 import com.microservice.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable long orderId){
+        OrderResponse orderResponse = orderService.getOrderById(orderId);
+
+        return new ResponseEntity<>(orderResponse, HttpStatus.OK);
+    }
 
 }
